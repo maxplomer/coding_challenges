@@ -11,10 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112180052) do
+ActiveRecord::Schema.define(version: 20141112203103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "allowed_methods", force: true do |t|
+    t.integer  "challenge_id", null: false
+    t.string   "method",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "challenges", force: true do |t|
+    t.string   "name",              null: false
+    t.string   "difficulty",        null: false
+    t.string   "description",       null: false
+    t.string   "problem_statement", null: false
+    t.string   "method_skeleton",   null: false
+    t.string   "answer",            null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "input_results", force: true do |t|
+    t.integer  "challenge_id", null: false
+    t.string   "input",        null: false
+    t.string   "result",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name",            null: false

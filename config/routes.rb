@@ -1,6 +1,9 @@
 CodechefClone::Application.routes.draw do
   resources :users, :only => [:create, :new, :show, :edit, :update, :index]
   resource :session, :only => [:create, :destroy, :new]
+  resources :challenges, :only => [:create, :new]
+  resources :input_results, :only => [:create, :new]
+
 end
 
 
