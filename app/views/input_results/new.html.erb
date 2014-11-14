@@ -1,0 +1,30 @@
+<form action="<%= input_results_url %>" method="post">
+
+  <input
+    name="authenticity_token"
+    type="hidden"
+    value="<%= form_authenticity_token %>">
+
+  <input
+    id="input_result_challenge_name"
+    name="input_result[challenge_name]"
+    type="text"
+    placeholder="Challenge name">
+  <br>
+
+  <textarea 
+    id="input_result_input" 
+    class="text" cols="86" rows ="5" 
+    name="input_result[input]" 
+    placeholder="Input"></textarea>
+  <br>
+
+  <input
+    id="input_result_result"
+    name="input_result[result]"
+    type="text"
+    placeholder="Result">
+  <br>
+
+  <input type="submit" value="Submit Input and Result" class="btn btn-default">
+</form>

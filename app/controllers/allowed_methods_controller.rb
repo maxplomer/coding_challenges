@@ -5,25 +5,19 @@ class AllowedMethodsController < ApplicationController
     render :new
   end
 
-
   def create
-    @allowed_method = AllowedMethod.new(allowed_method_params)
+    challenge_name = params["allowed_method"]["challenge_name"]
+    challenge_id = Challenge.find_by_name(challenge_name).id
+    allowed_methods = params["allowed_method"]["allowed_methods"].gsub(" ","").split(',')
 
-    if @allowed_method.save
-      redirect_to root_url
-    else
-      flash.now[:errors] = @allowed_method.errors.full_messages
-      render :new
+    allowed_methods.each do |method|
+      AllowedMethod.create(
+        challenge_id: challenge_id,
+        method: method
+      )
     end
-  end
 
-  private
-
-  def allowed_method_params
-    params.require(:allowed_method).permit(
-      :challenge_id, 
-      :method
-    )
+    redirect_to root_url
   end
 
 end

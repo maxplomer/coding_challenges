@@ -3,7 +3,7 @@ CodechefClone::Application.routes.draw do
   resource :session, :only => [:create, :destroy, :new]
   resources :challenges, :only => [:create, :new]
   resources :input_results, :only => [:create, :new]
-
+  resources :allowed_methods, :only => [:create, :new]
 end
 
 

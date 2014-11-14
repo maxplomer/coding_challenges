@@ -1,0 +1,23 @@
+<form action="<%= allowed_methods_url %>" method="post">
+
+  <input
+    name="authenticity_token"
+    type="hidden"
+    value="<%= form_authenticity_token %>">
+
+  <input
+    id="allowed_method_challenge_name"
+    name="allowed_method[challenge_name]"
+    type="text"
+    placeholder="Challenge name">
+  <br>
+
+  <input
+    id="allowed_method_allowed_methods"
+    name="allowed_method[allowed_methods]"
+    type="text"
+    placeholder="Allowed Methods">
+  <br>
+
+  <input type="submit" value="Submit Allowed Methods" class="btn btn-default">
+</form>

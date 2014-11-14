@@ -8,6 +8,8 @@ class InputResultsController < ApplicationController
 
   def create
     @input_result = InputResult.new(input_result_params)
+    challenge_name = params["input_result"]["challenge_name"]
+    @input_result.challenge_id = Challenge.find_by_name(challenge_name).id
 
     if @input_result.save
       redirect_to root_url
@@ -20,11 +22,7 @@ class InputResultsController < ApplicationController
   private
 
   def input_result_params
-    params.require(:input_result).permit(
-      :challenge_id, 
-      :input, 
-      :result
-    )
+    params.require(:input_result).permit(:input, :result)
   end
 
 
