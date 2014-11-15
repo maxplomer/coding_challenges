@@ -1,0 +1,67 @@
+<h1><%= @challenge.name %></h1>
+
+
+<table class="table table-striped table-bordered table-condensed">
+  <tr>
+    <td><b>Difficulty:</b></td>
+    <td><%= @challenge.difficulty %></td>
+  </tr>
+  <tr>
+    <td><b>Description:</b></td>
+    <td><%= @challenge.description %></td>
+  </tr>
+  <tr>
+    <td><b>&#35; Submissions:</b></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><b>&#37; Sucessful:</b></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><b>Problem Statement:</b></td>
+    <td><%= @challenge.problem_statement %></td>
+  </tr>
+  <tr>
+    <td><b>Allowed Methods:</b></td>
+    <td>
+      <% @challenge.allowed_methods.each_with_index do |method, i| %>
+        <%= method.method %>
+        <%= "," unless (i + 1) == @challenge.allowed_methods.length %>
+      <% end %>
+    </td>
+  </tr>
+
+  <% @challenge.input_results.each_with_index do |input_result, index| %>
+    <% input = input_result.input.gsub("\r","").split("\n") %>
+    <tr>
+      <td><b>Input &#35;<%= index + 1 %>:</b></td>
+      <td>
+        <% input.each do |line| %>
+          <%= line %><br>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Result &#35;<%= index + 1 %>:</b></td>
+      <td><%= input_result.result %></td>
+    </tr>   
+  <% end %>
+
+</table>
+
+
+<% if signed_in? %>
+  <h3>Enter Your Solution:</h3><br>
+
+  <%= @challenge.method_skeleton %>
+
+
+<% end %>
+
+
+
+
+
+
+
