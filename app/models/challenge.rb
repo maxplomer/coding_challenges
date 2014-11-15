@@ -14,6 +14,11 @@ class Challenge < ActiveRecord::Base
     dependent: :destroy
   )
 
-
+  has_many(
+    :solutions,
+    class_name: "Solution",
+    foreign_key: :challenge_id,
+    dependent: :destroy
+  )
 
 end

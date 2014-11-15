@@ -6,6 +6,7 @@ CodechefClone::Application.routes.draw do
   resources :challenges, :only => [:create, :new, :show]
   resources :input_results, :only => [:create, :new]
   resources :allowed_methods, :only => [:create, :new]
+  resources :solutions, :only => [:create]
 end
 
 

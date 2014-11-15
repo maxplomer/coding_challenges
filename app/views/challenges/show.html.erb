@@ -54,20 +54,27 @@
 <% if signed_in? %>
   <h3>Enter Your Solution:</h3><br>
 
-  <form id="codeform" action="http://www.cs.tut.fi/cgi-bin/run/~jkorpela/echo.cgi" method="post"> 
-    <textarea class="text" name="code"><%= @challenge.method_skeleton %></textarea>
+  <form id="codeform" action="<%= solutions_url %>" method="post"> 
+    <input
+      name="authenticity_token"
+      type="hidden"
+      value="<%= form_authenticity_token %>">
+
+    <input
+      name="solution[challenge_id]"
+      type="hidden"
+      value="<%= @challenge.id %>">
+
+    <textarea class="text" name="solution[method_string]"><%= @challenge.method_skeleton %></textarea>
   </form>
 
   <div id="editor"></div>
-
-<!--  <script src="src/ace.js" type="text/javascript" charset="utf-8"></script>
-  <script src="src/mode-ruby.js" type="text/javascript" charset="utf-8"></script> -->
 
   <script>
     var editor = ace.edit("editor");
     var RubyMode = require("ace/mode/ruby").Mode;
     editor.getSession().setMode(new RubyMode());
-    var textarea = $('textarea[name="code"]').hide();
+    var textarea = $('textarea[name="solution[method_string]"]').hide();
     editor.getSession().setValue(textarea.val());
     editor.getSession().on('change', function(){
       textarea.val(editor.getSession().getValue());
