@@ -4,7 +4,7 @@ class SolutionsController < ApplicationController
   	user_id = current_user.id
     challenge_id = params["solution"]["challenge_id"]
   	method_string = params["solution"]["method_string"]
-    success = true
+    success = false
 
   	@solution = Solution.new(
   	  user_id: user_id, 

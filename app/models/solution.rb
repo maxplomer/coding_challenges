@@ -16,24 +16,16 @@ class Solution < ActiveRecord::Base
   def success?
     challenge = self.challenge
     input_results = challenge.input_results
-
+    allowed_methods = challenge.allowed_methods
 
     s = Sandbox.new
     priv = Privileges.new
 
-    priv.allow_method :upto
-    priv.allow_method :length
-    priv.allow_method :+
-    priv.allow_method :[]
-    priv.allow_method :*
-    priv.allow_method :-
+    allowed_methods.each do |allowed_method|
+      priv.allow_method allowed_method.method.to_sym
+    end
 
-
-    solution = 'def dotproduct(x, y)
-      total = 0
-      0.upto(x.length - 1) { |i| total += x[i] * y[i] }
-      total
-    end'
+    solution = self.method_string
 
     solution = 'class X
     ' + solution +'
@@ -42,11 +34,13 @@ class Solution < ActiveRecord::Base
     s.run(priv, solution)
 
     sol = s.base_namespace::X.new
+
+    eval(input_results[1].input)
     x = [1, 2, 3]
     y = [10, 10, 10]
     puts sol.dotproduct(x, y)
 
-
+    puts input_results[1].input
 
   end
 
