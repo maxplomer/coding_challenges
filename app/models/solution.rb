@@ -35,13 +35,36 @@ class Solution < ActiveRecord::Base
 
     sol = s.base_namespace::X.new
 
-    eval(input_results[1].input)
+    #################################
     x = [1, 2, 3]
     y = [10, 10, 10]
-    puts sol.dotproduct(x, y)
 
-    puts input_results[1].input
+    eval_str = "sol." + get_method_call(challenge)
+   
+    result = eval(eval_str)
+
+    #eval(input_results[1].input)
+   
+    puts result
+
+    #puts input_results[1].input
+
+    b = binding
+    b.eval input_results[1].input
+    b.eval 'puts x'
+
+
 
   end
+
+  private
+
+  def get_method_call(challenge)
+    result = challenge.answer.split("\n")[0]
+    result.gsub!("def","")
+    result.gsub!(" ","")
+    result
+  end
+
 
 end
