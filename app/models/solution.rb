@@ -37,13 +37,21 @@ class Solution < ActiveRecord::Base
 
     eval_str = "sol." + get_method_call(challenge)
 
-    b = binding
-    b.eval input_results[1].input
+    input_results.each do |input_result|
+      input = input_result.input
+      result = input_result.result
 
-    user_result = b.eval(eval_str)
+      b = binding
+      b.eval input
 
-    puts user_result
+      user_result = b.eval(eval_str)
 
+      if user_result != eval(result)
+        return false
+      end
+    end
+    
+    true
   end
 
   private
