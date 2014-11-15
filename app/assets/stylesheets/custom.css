@@ -2,3 +2,35 @@
   text-align: center;
   padding-top: 100px;
 }
+
+.body-application-layout {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+ul {
+  list-style: none;
+}
+
+.menu-right {
+  float: right;	
+  padding-right: 25px;
+}
+
+.menu-right ul {
+  padding-top: 15px;
+}
+
+.menu-right p {
+  padding-top: 25px;
+}
+
+.menu-left {
+  float: left;	
+}
+
+.group:after {
+  content: "";
+  clear: both;
+  display: block;
+}
