@@ -35,25 +35,14 @@ class Solution < ActiveRecord::Base
 
     sol = s.base_namespace::X.new
 
-    #################################
-    x = [1, 2, 3]
-    y = [10, 10, 10]
-
     eval_str = "sol." + get_method_call(challenge)
-   
-    result = eval(eval_str)
-
-    #eval(input_results[1].input)
-   
-    puts result
-
-    #puts input_results[1].input
 
     b = binding
     b.eval input_results[1].input
-    b.eval 'puts x'
 
+    user_result = b.eval(eval_str)
 
+    puts user_result
 
   end
 
