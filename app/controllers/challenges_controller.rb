@@ -27,6 +27,24 @@ class ChallengesController < ApplicationController
     render :show
   end
 
+  def easy
+    @challenges = Challenge.all.select{ |i| i.difficulty == "easy" }
+    @easy_button_class = "current-button"
+    render :index
+  end
+
+  def medium
+    @challenges = Challenge.all.select{ |i| i.difficulty == "medium" }
+    @medium_button_class = "current-button"
+    render :index
+  end
+
+  def hard
+    @challenges = Challenge.all.select{ |i| i.difficulty == "hard" }
+    @hard_button_class = "current-button"
+    render :index
+  end
+
 
   private
 

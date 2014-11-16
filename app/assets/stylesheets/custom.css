@@ -1,3 +1,8 @@
+.current-button {
+  background-color: red;
+}
+
+
 .editor-readonly {
   position: relative;
   width: 600px;

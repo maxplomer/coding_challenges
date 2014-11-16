@@ -1,5 +1,9 @@
 CodechefClone::Application.routes.draw do
-  root :to => "challenges#new"
+  root :to => "challenges#easy"
+
+  get 'challenges/easy'
+  get 'challenges/medium'
+  get 'challenges/hard'
 
   resources :users, :only => [:create, :new, :show, :edit, :update, :index]
   resource :session, :only => [:create, :destroy, :new]
@@ -7,6 +11,7 @@ CodechefClone::Application.routes.draw do
   resources :input_results, :only => [:create, :new]
   resources :allowed_methods, :only => [:create, :new]
   resources :solutions, :only => [:create]
+
 end
 
 
