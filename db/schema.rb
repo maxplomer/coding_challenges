@@ -26,18 +26,18 @@ ActiveRecord::Schema.define(version: 20141115052136) do
   create_table "challenges", force: true do |t|
     t.string   "name",              null: false
     t.string   "difficulty",        null: false
-    t.string   "description",       null: false
-    t.string   "problem_statement", null: false
-    t.string   "method_skeleton",   null: false
-    t.string   "answer",            null: false
+    t.text     "description",       null: false
+    t.text     "problem_statement", null: false
+    t.text     "method_skeleton",   null: false
+    t.text     "answer",            null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "input_results", force: true do |t|
     t.integer  "challenge_id", null: false
-    t.string   "input",        null: false
-    t.string   "result",       null: false
+    t.text     "input",        null: false
+    t.text     "result",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20141115052136) do
   create_table "solutions", force: true do |t|
     t.integer  "user_id",       null: false
     t.integer  "challenge_id",  null: false
-    t.string   "method_string", null: false
+    t.text     "method_string", null: false
     t.boolean  "success",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"

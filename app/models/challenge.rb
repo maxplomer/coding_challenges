@@ -26,7 +26,11 @@ class Challenge < ActiveRecord::Base
   end
 
   def percent_successful
-    ( number_successful / number_submissions ) * 100
+    if number_submissions == 0
+      100
+    else
+      ( number_successful / number_submissions ) * 100
+    end
   end
 
   private
