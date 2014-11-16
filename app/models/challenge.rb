@@ -21,4 +21,18 @@ class Challenge < ActiveRecord::Base
     dependent: :destroy
   )
 
+  def number_submissions
+    self.solutions.length
+  end
+
+  def percent_successful
+    ( number_successful / number_submissions ) * 100
+  end
+
+  private
+
+  def number_successful
+    self.solutions.collect{ |i| i.success }.length
+  end
+
 end
