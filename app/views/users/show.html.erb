@@ -12,3 +12,32 @@
     </td>
   </tr>
 </table>
+
+<h3>Submissions:</h3><br>
+
+<% @user.solutions.each_with_index do |solution, index| %>
+  <% challenge = solution.challenge %>
+  <h3><%= link_to challenge.name, challenge_url(challenge) %></h3>
+  Solution: <%= solution.success ? "Successful" : "Failed"%> <br><br>
+
+
+  <div id="editor-readonly<%= index %>" class="editor-readonly"><%= solution.method_string %></div>
+
+
+  <script>
+    var editor = ace.edit("editor-readonly<%= index %>");
+    var RubyMode = require("ace/mode/ruby").Mode;
+    editor.getSession().setMode(new RubyMode());
+    editor.setOptions({
+      readOnly: true,
+      highlightActiveLine: false,
+      highlightGutterLine: false,
+      maxLines: 100
+    })
+    editor.renderer.$cursorLayer.element.style.opacity=0
+  </script>
+
+
+  <br>
+<% end %>
+
