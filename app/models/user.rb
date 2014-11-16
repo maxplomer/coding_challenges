@@ -15,7 +15,15 @@ class User < ActiveRecord::Base
     dependent: :destroy
   )
 
+  def number_submissions
+    self.solutions.length
+  end
 
+  def percent_successful
+    ( number_successful / number_submissions ) * 100
+  end
+
+  ### auth ###
 
   def self.find_by_credentials(email, password)
     user = User.find_by_email(email)
@@ -48,4 +56,8 @@ class User < ActiveRecord::Base
   def ensure_session_token
     self.session_token ||= self.class.generate_session_token
   end  
+
+  def number_successful
+    self.solutions.collect{ |i| i.success }.length
+  end
 end
