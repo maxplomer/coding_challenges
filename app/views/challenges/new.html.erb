@@ -1,75 +1,82 @@
-<form action="<%= challenges_url %>" method="post">
-  <input
-    name="authenticity_token"
-    type="hidden"
-    value="<%= form_authenticity_token %>">
+<% if signed_in? && current_user.admin %>
 
-  <input
-    id="challenge_name"
-    name="challenge[name]"
-    type="text"
-    placeholder="Name">
-  <br>
+  <form action="<%= challenges_url %>" method="post">
+    <input
+      name="authenticity_token"
+      type="hidden"
+      value="<%= form_authenticity_token %>">
 
-  <input
-    id="challenge_difficulty"
-    name="challenge[difficulty]"
-    type="text"
-    placeholder="Difficulty">
-  <br>
+    <input
+      id="challenge_name"
+      name="challenge[name]"
+      type="text"
+      placeholder="Name">
+    <br>
 
-  <input
-    id="challenge_description"
-    name="challenge[description]"
-    type="text"
-    placeholder="Description">
-  <br>
+    <input
+      id="challenge_difficulty"
+      name="challenge[difficulty]"
+      type="text"
+      placeholder="Difficulty">
+    <br>
 
-  <textarea 
-    id="challenge_problem_statement" 
-    class="text" cols="86" rows ="5" 
-    name="challenge[problem_statement]" 
-    placeholder="Problem Statement"></textarea>
-  <br>
+    <input
+      id="challenge_description"
+      name="challenge[description]"
+      type="text"
+      placeholder="Description">
+    <br>
 
-  <textarea 
-    id="challenge_input" 
-    class="text" cols="86" rows ="5" 
-    name="challenge[input]" 
-    placeholder="Input"></textarea>
-  <br>
+    <textarea 
+      id="challenge_problem_statement" 
+      class="text" cols="86" rows ="5" 
+      name="challenge[problem_statement]" 
+      placeholder="Problem Statement"></textarea>
+    <br>
 
-  <input
-    id="challenge_result"
-    name="challenge[result]"
-    type="text"
-    placeholder="Result">
-  <br>
+    <textarea 
+      id="challenge_input" 
+      class="text" cols="86" rows ="5" 
+      name="challenge[input]" 
+      placeholder="Input"></textarea>
+    <br>
 
-  <textarea 
-    id="challenge_method_skeleton" 
-    class="text" cols="86" rows ="5" 
-    name="challenge[method_skeleton]" 
-    placeholder="Method Skeleton"></textarea>
-  <br>
+    <input
+      id="challenge_result"
+      name="challenge[result]"
+      type="text"
+      placeholder="Result">
+    <br>
 
-  <input
-    id="challenge_allowed_methods"
-    name="challenge[allowed_methods]"
-    type="text"
-    placeholder="Allowed Methods">
-  <br>
+    <textarea 
+      id="challenge_method_skeleton" 
+      class="text" cols="86" rows ="5" 
+      name="challenge[method_skeleton]" 
+      placeholder="Method Skeleton"></textarea>
+    <br>
 
-  <textarea 
-    id="challenge_answer" 
-    class="text" cols="86" rows ="5" 
-    name="challenge[answer]" 
-    placeholder="Answer"></textarea>
-  <br>
+    <input
+      id="challenge_allowed_methods"
+      name="challenge[allowed_methods]"
+      type="text"
+      placeholder="Allowed Methods">
+    <br>
 
-  <input type="submit" value="Submit Challenge" class="btn btn-default">
-</form>
+    <textarea 
+      id="challenge_answer" 
+      class="text" cols="86" rows ="5" 
+      name="challenge[answer]" 
+      placeholder="Answer"></textarea>
+    <br>
 
+    <input type="submit" value="Submit Challenge" class="btn btn-default">
+  </form>
+
+<% else %>
+
+  <h3>You must be an admin to create a new challenge</h3>
+
+<% end %>
 
 
 

@@ -1,23 +1,31 @@
-<form action="<%= allowed_methods_url %>" method="post">
+<% if signed_in? && current_user.admin %>
 
-  <input
-    name="authenticity_token"
-    type="hidden"
-    value="<%= form_authenticity_token %>">
+  <form action="<%= allowed_methods_url %>" method="post">
 
-  <input
-    id="allowed_method_challenge_name"
-    name="allowed_method[challenge_name]"
-    type="text"
-    placeholder="Challenge name">
-  <br>
+    <input
+      name="authenticity_token"
+      type="hidden"
+      value="<%= form_authenticity_token %>">
 
-  <input
-    id="allowed_method_allowed_methods"
-    name="allowed_method[allowed_methods]"
-    type="text"
-    placeholder="Allowed Methods">
-  <br>
+    <input
+      id="allowed_method_challenge_name"
+      name="allowed_method[challenge_name]"
+      type="text"
+      placeholder="Challenge name">
+    <br>
 
-  <input type="submit" value="Submit Allowed Methods" class="btn btn-default">
-</form>
+    <input
+      id="allowed_method_allowed_methods"
+      name="allowed_method[allowed_methods]"
+      type="text"
+      placeholder="Allowed Methods">
+    <br>
+
+    <input type="submit" value="Submit Allowed Methods" class="btn btn-default">
+  </form>
+
+<% else %>
+
+  <h3>You must be an admin to create a new challenge allowed method</h3>
+
+<% end %>
