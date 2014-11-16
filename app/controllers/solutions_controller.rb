@@ -11,8 +11,11 @@ class SolutionsController < ApplicationController
   	  method_string: method_string, 
   	  success: false
   	)
+    begin
+      @solution.success = @solution.success?
+    rescue Exception
 
-    @solution.success = @solution.success?
+    end
 
     if @solution.save
       redirect_to root_url #later redirect to current_user show page
