@@ -15,29 +15,51 @@
 
 <h3>Submissions:</h3>
 
-<% @user.solutions.each_with_index do |solution, index| %>
+<% @user.solutions.reverse.each_with_index do |solution, index| %>
   <% challenge = solution.challenge %>
   <h3><%= link_to challenge.name, challenge_url(challenge) %></h3>
   Solution: <%= solution.success ? "Successful" : "Failed"%> <br><br>
 
+  <% if (signed_in? && current_user.have_solved?(challenge)) || !solution.success %>
 
-  <div id="editor-readonly<%= index %>" class="editor-readonly"><%= solution.method_string %></div>
-
-
-  <script>
-    var editor = ace.edit("editor-readonly<%= index %>");
-    var RubyMode = require("ace/mode/ruby").Mode;
-    editor.getSession().setMode(new RubyMode());
-    editor.setOptions({
-      readOnly: true,
-      highlightActiveLine: false,
-      highlightGutterLine: false,
-      maxLines: 100
-    })
-    editor.renderer.$cursorLayer.element.style.opacity=0
-  </script>
+    <div id="editor-readonly<%= index %>" class="editor-readonly"><%= solution.method_string %></div>
 
 
-  <br>
+    <script>
+      var editor = ace.edit("editor-readonly<%= index %>");
+      var RubyMode = require("ace/mode/ruby").Mode;
+      editor.getSession().setMode(new RubyMode());
+      editor.setOptions({
+        readOnly: true,
+        highlightActiveLine: false,
+        highlightGutterLine: false,
+        maxLines: 100
+      })
+      editor.renderer.$cursorLayer.element.style.opacity=0
+    </script>
+    <br>
+  
+    <% if solution.success %>
+
+      Official Solution:<br><br>
+      <div id="editor-readonly-official<%= index %>" class="editor-readonly"><%= solution.challenge.answer %></div>
+
+
+      <script>
+        var editor = ace.edit("editor-readonly-official<%= index %>");
+        var RubyMode = require("ace/mode/ruby").Mode;
+        editor.getSession().setMode(new RubyMode());
+        editor.setOptions({
+          readOnly: true,
+          highlightActiveLine: false,
+          highlightGutterLine: false,
+          maxLines: 100
+        })
+        editor.renderer.$cursorLayer.element.style.opacity=0
+      </script>
+      <br>
+    <% end %>
+  <% end %>
+
 <% end %>
 

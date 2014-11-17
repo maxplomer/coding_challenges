@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
     dependent: :destroy
   )
 
+  def have_solved?(challenge)
+    self.solutions.select{ |i| i.challenge == challenge && i.success }.length > 0 
+  end
+
   def number_easy_submissions
     self.solutions.select{ |i| i.challenge.difficulty == "easy" && i.success}.length
   end
