@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
     if number_submissions == 0
       100
     else
-      ( number_successful / number_submissions ) * 100
+      truncate(( number_successful * 1.0 / number_submissions ) * 100)
     end
   end
 
@@ -89,11 +89,17 @@ class User < ActiveRecord::Base
 
   private
 
+  def truncate(x)
+    (x * 100).floor / 100.0
+  end
+
+  def number_successful
+    self.solutions.select{ |i| i.success }.length
+  end
+
   def ensure_session_token
     self.session_token ||= self.class.generate_session_token
   end  
 
-  def number_successful
-    self.solutions.collect{ |i| i.success }.length
-  end
+
 end
