@@ -8,7 +8,9 @@
 
 <% @challenges.each do |challenge| %>
   <h3><%= link_to challenge.name, challenge_url(challenge) %></h3>
-
+  <% if signed_in? && current_user.have_solved?(challenge) %>
+    You have already solved this challenge :^) <br><br>
+  <% end %>
 <table class="table table-striped table-bordered table-condensed">
   <tr>
     <td class="left-column"><b>Description:</b></td>
