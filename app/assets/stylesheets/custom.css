@@ -1,7 +1,14 @@
+.user-index-table {
+  width: 400px;
+}
+
+.left-column-user-index {
+  width: 300px;
+}
+
 .current-button {
   background-color: red;
 }
-
 
 .editor-readonly {
   position: relative;

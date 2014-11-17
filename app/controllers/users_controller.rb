@@ -1,6 +1,24 @@
 class UsersController < ApplicationController
   before_action :require_signed_out!, :only => [:create, :new]
 
+  def easy
+    @users = User.all.sort! { |a,b| b.number_easy_submissions <=> a.number_easy_submissions }
+    @easy_button_class = "current-button"
+    render :index
+  end
+
+  def medium
+    @users = User.all.sort! { |a,b| b.number_medium_submissions <=> a.number_medium_submissions }
+    @medium_button_class = "current-button"
+    render :index
+  end
+
+  def hard
+    @users = User.all.sort! { |a,b| b.number_hard_submissions <=> a.number_hard_submissions }
+    @hard_button_class = "current-button"
+    render :index
+  end
+
   def new
     @user = User.new
     render :new, :layout => false

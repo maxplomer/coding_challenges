@@ -5,6 +5,10 @@ CodechefClone::Application.routes.draw do
   get 'challenges/medium'
   get 'challenges/hard'
 
+  get 'users/easy'
+  get 'users/medium'
+  get 'users/hard'
+
   resources :users, :only => [:create, :new, :show, :edit, :update, :index]
   resource :session, :only => [:create, :destroy, :new]
   resources :challenges, :only => [:create, :new, :show]

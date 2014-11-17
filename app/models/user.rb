@@ -15,6 +15,18 @@ class User < ActiveRecord::Base
     dependent: :destroy
   )
 
+  def number_easy_submissions
+    self.solutions.select{ |i| i.challenge.difficulty == "easy" && i.success}.length
+  end
+
+  def number_medium_submissions
+    self.solutions.select{ |i| i.challenge.difficulty == "medium" && i.success}.length
+  end
+
+  def number_hard_submissions
+    self.solutions.select{ |i| i.challenge.difficulty == "hard" && i.success}.length
+  end
+
   def number_submissions
     self.solutions.length
   end
