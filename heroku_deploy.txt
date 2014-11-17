@@ -1,0 +1,16 @@
+
+have this is production.rb
+config.assets.precompile += %w( custom.css)
+
+
+add this to gemfile
+gem 'rails_12factor', group: :production
+
+
+git push heroku master
+
+
+
+heroku rake db:migrate
+
+

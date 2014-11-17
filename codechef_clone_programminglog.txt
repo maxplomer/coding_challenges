@@ -1,0 +1,78 @@
+$ rails _4.0.2_ new codechef_clone --database postgresql
+
+config/database.yml by adding username: maxplomer and host: localhost
+
+When using postgresql, you should also run the command
+
+$ rake db:create:all
+
+add .DS_Store and .localized to .gitignore
+
+in the terminal before trying to run migrations
+
+# Add to Gemfile
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry-rails'
+  gem 'quiet_assets'
+end
+
+
+$ rails generate model User
+$ rails generate controller users
+$ rails generate controller sessions
+
+
+
+http://stackoverflow.com/questions/19188370/rails-custom-css-not-working-when-deployed-to-heroku
+
+
+
+heroku custom.css file getting to work
+
+add
+
+config.assets.precompile += %w( custom.css)
+ 
+to
+
+production.rb
+
+$ git commit -m "done with auth"
+
+
+$ rails generate model Challenge
+$ rails generate controller challenges
+$ rails generate model AllowedMethod
+$ rails generate controller input_results
+$ rails generate model InputResult
+
+
+$ rails generate controller allowed_methods
+
+$ rails generate model Solution
+$ rails generate controller solutions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

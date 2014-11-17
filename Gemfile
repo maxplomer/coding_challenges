@@ -56,3 +56,6 @@ gem 'bcrypt', '~> 3.1.7'
 
 # sandbox gem to prevent dangerous method calls
 gem 'shikashi'
+
+# need for precompiling of assets 
+gem 'rails_12factor', group: :production
