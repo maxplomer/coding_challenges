@@ -34,7 +34,16 @@
       <% end %>
     </div>
   </div>
- 
+  <div class="menu-bottom-center">
+    <ul>
+      <li>▶ <%= link_to "Submit", new_challenge_url %></li>
+      <li>▶ <%= link_to "Practice", challenges_easy_url %></li>
+      <% profile_url = (signed_in? ? user_url(current_user) : new_session_url) %>
+      <li>▶ <%= link_to "Profile", profile_url %></li>
+      <li>▶ <%= link_to "Leaderboard", users_easy_url %></li>
+    </ul>
+  </div>
+
   <hr>
 
   <% if flash[:errors] %>
