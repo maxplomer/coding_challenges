@@ -29,14 +29,18 @@ class Challenge < ActiveRecord::Base
     if number_submissions == 0
       100
     else
-      ( number_successful / number_submissions ) * 100
+      truncate(( number_successful * 1.0 / number_submissions ) * 100)
     end
   end
 
   private
 
+  def truncate(x)
+    (x * 100).floor / 100.0
+  end
+
   def number_successful
-    self.solutions.collect{ |i| i.success }.length
+    self.solutions.select{ |i| i.success }.length
   end
 
 end

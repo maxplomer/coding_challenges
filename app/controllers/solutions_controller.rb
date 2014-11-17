@@ -5,6 +5,13 @@ class SolutionsController < ApplicationController
     challenge_id = params["solution"]["challenge_id"]
   	method_string = params["solution"]["method_string"]
 
+    challenge = Challenge.find(challenge_id)
+    if current_user.have_solved?(challenge)
+      flash[:errors] = ["You already solved this challenge."]
+      redirect_to user_url(current_user)
+      return
+    end
+
   	@solution = Solution.new(
   	  user_id: user_id, 
   	  challenge_id: challenge_id, 
@@ -18,7 +25,7 @@ class SolutionsController < ApplicationController
     end
 
     if @solution.save
-      redirect_to root_url #later redirect to current_user show page
+      redirect_to user_url(current_user)
     else
       flash.now[:errors] = @solution.errors.full_messages
       render :new
