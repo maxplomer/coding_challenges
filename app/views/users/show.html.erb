@@ -44,9 +44,19 @@
   </tr>
   <tr>
     <td><b>&#37; Successful:</b></td>
-    <td>
-      <%= @user.percent_successful %>
-    </td>
+    <td><%= @user.percent_successful %></td>
+  </tr>
+  <tr>
+    <td><b>&#35; Easy solved:</b></td>
+    <td><%= @user.number_easy_submissions %></td>
+  </tr>
+  <tr>
+    <td><b>&#35; Medium solved:</b></td>
+    <td><%= @user.number_medium_submissions %></td>
+  </tr>
+  <tr>
+    <td><b>&#35; Hard solved:</b></td>
+    <td><%= @user.number_hard_submissions %></td>
   </tr>
 </table>
 
