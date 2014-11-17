@@ -1,5 +1,42 @@
 <h1><%= @user.name %>&#39;s Profile</h1>
 
+<!-- follow or unfollow - start -->
+<% if signed_in? && current_user.id != @user.id %>
+
+  <% if current_user.follows?(@user) %>
+    <% follow = Follow.where(follower_id: current_user.id, leader_id: @user.id)[0] %>
+  <% end %>
+
+  <% action = (current_user.follows?(@user) ? follow_url(follow) : follows_url) %>
+  <% method = (current_user.follows?(@user) ? "delete" : "post") %>
+  <% message = (current_user.follows?(@user) ? "Unfollow" : "Follow") %>
+
+  <form action="<%= action %>" method="post">
+    <input
+      name="_method"
+      type="hidden"
+      value="<%= method %>">
+    <input
+      name="authenticity_token"
+      type="hidden"
+      value="<%= form_authenticity_token %>">
+    <input
+      id="follow_leader_id"
+      name="follow[leader_id]"
+      type="hidden"
+      value="<%= @user.id %>">
+    <input
+      id="follow_follower_id"
+      name="follow[follower_id]"
+      type="hidden"
+      value="<%= current_user.id %>">
+    <input type="submit" value="<%= message %>" class="btn btn-default">
+  </form>
+  <br>
+<% end %>
+<!-- follow or unfollow - end -->
+
+
 <table class="table table-striped table-bordered table-condensed user-show-table">
   <tr>
     <td><b>&#35; Submissions:</b></td>

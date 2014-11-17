@@ -7,6 +7,18 @@ class User < ActiveRecord::Base
 
   before_validation :ensure_session_token
 
+  has_many(
+    :follows,
+    class_name: "Follow",
+    foreign_key: :follower_id,
+    dependent: :destroy
+  )
+
+  has_many(
+    :users_they_follow,
+    through: :follows,
+    source: :leader
+  )
 
   has_many(
     :solutions,
@@ -14,6 +26,10 @@ class User < ActiveRecord::Base
     foreign_key: :user_id,
     dependent: :destroy
   )
+
+  def follows?(user) 
+    self.users_they_follow.include?(user)
+  end
 
   def have_solved?(challenge)
     self.solutions.select{ |i| i.challenge == challenge && i.success }.length > 0 

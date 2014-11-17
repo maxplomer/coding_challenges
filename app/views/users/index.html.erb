@@ -1,5 +1,19 @@
 <h1>Leaderboard</h1>
 
+<% if signed_in? %>
+  <% if @easy_button_class %>
+    <% leaderboard_url = follows_easy_url %>
+  <% elsif @medium_button_class %>
+    <% leaderboard_url = follows_medium_url %>
+  <% elsif @hard_button_class %>
+    <% leaderboard_url = follows_hard_url %>
+  <% end %>
+
+  <a href="<%= leaderboard_url %>" class="btn btn-default">show followed only</a>
+<% end %>
+
+<br><br>
+
 <%= link_to "Easy", users_easy_url, class: "btn btn-default #{@easy_button_class}" %>
 <%= link_to "Medium", users_medium_url, class: "btn btn-default #{@medium_button_class}" %>
 <%= link_to "Hard", users_hard_url, class: "btn btn-default #{@hard_button_class}" %>
