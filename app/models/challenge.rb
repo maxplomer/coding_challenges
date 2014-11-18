@@ -21,6 +21,13 @@ class Challenge < ActiveRecord::Base
     dependent: :destroy
   )
 
+  has_many(
+    :pictures,
+    class_name: "Picture",
+    foreign_key: :challenge_id,
+    dependent: :destroy
+  )
+
   def number_submissions
     self.solutions.length
   end

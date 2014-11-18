@@ -1,0 +1,35 @@
+<% if signed_in? && current_user.admin %>
+
+  <form action="<%= pictures_url %>" method="post">
+
+    <input
+      name="authenticity_token"
+      type="hidden"
+      value="<%= form_authenticity_token %>">
+
+    <input
+      id="picture_challenge_name"
+      name="picture[challenge_name]"
+      type="text"
+      placeholder="Challenge name">
+    <br>
+
+    <input
+      id="picture_url"
+      name="picture[url]"
+      type="text"
+      placeholder="Picture url">
+    <br>
+
+    <input type="submit" value="Submit Picture" class="btn btn-default">
+  </form>
+
+<% else %>
+
+  <h3>You must be an admin to create a new challenge picture</h3>
+
+<% end %>
+
+
+
+

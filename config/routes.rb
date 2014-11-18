@@ -22,7 +22,7 @@ CodechefClone::Application.routes.draw do
   resources :allowed_methods, :only => [:create, :new]
   resources :solutions, :only => [:create]
   resources :follows, :only => [:create, :destroy]
-
+  resources :pictures, :only => [:create, :new]
 end
 
 

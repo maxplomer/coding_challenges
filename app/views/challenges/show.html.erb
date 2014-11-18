@@ -52,6 +52,11 @@
 
 </table>
 
+<% @challenge.pictures.each do |picture| %>
+
+  <%= image_tag(picture.url) %><br><br>
+
+<% end %>
 
 <% if signed_in? %>
   <h3>Enter Your Solution:</h3><br>
