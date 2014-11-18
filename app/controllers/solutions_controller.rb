@@ -18,8 +18,13 @@ class SolutionsController < ApplicationController
   	  method_string: method_string, 
   	  success: false
   	)
+
+    timeout_in_seconds = 10
+
     begin
-      @solution.success = @solution.success?
+      Timeout::timeout(timeout_in_seconds) do
+        @solution.success = @solution.success?
+      end
     rescue Exception
 
     end
