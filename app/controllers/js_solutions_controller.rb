@@ -3,7 +3,7 @@ class JsSolutionsController < ApplicationController
   def create
     user_id = current_user.id
 
-    fail 
+    logger.info("HELLOHELLO")
   end
 
 end

@@ -90,7 +90,29 @@
 
 
 
+<script language="JavaScript">
 
+(function () {
+
+  var $form = $("#codeform");
+  $form.on("submit", function (event) {
+    event.preventDefault();
+    var data = $(event.currentTarget).serializeJSON();
+    $.ajax({
+      type: "POST",
+      url: "<%= js_solutions_url %>",
+      data: data,
+      //success: success,
+      dataType: "json"
+    });
+
+  });
+
+  //want success function to get user show page?
+
+})();
+
+</script>
 
 
 
