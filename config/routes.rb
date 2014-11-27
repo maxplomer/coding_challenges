@@ -24,6 +24,7 @@ CodechefClone::Application.routes.draw do
   resources :follows, :only => [:create, :destroy]
   resources :pictures, :only => [:create, :new]
   resources :js_challenges, :only =>[:show]
+  resources :js_solutions, :only => [:create]
 end
 
 
