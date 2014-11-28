@@ -65,7 +65,13 @@
 <% @user.solutions.reverse.each_with_index do |solution, index| %>
   <% challenge = solution.challenge %>
   <% language = solution.language %>
-  <h3><%= link_to challenge.name, challenge_url(challenge) %></h3>
+
+  <% if language == "Ruby" %>
+    <h3><%= link_to challenge.name, challenge_url(challenge) %> in Ruby</h3>
+  <% else %>
+    <h3><%= link_to challenge.name, js_challenge_url(challenge) %> in JavaScript</h3>
+  <% end %>
+
   Solution: <%= solution.success ? "Successful" : "Failed"%> <br><br>
 
   <% if (signed_in? && current_user.have_solved?(challenge, language)) || !solution.success %>

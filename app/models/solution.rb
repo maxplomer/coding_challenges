@@ -18,6 +18,12 @@ class Solution < ActiveRecord::Base
     input_results = challenge.ruby_input_results
     allowed_methods = challenge.allowed_methods
 
+    logger.info("HELLOHELLOHELLO")
+    logger.info(challenge.id)
+    logger.info(input_results)
+    logger.info(allowed_methods)
+    logger.info("HELLOHELLOHELLO")
+
     s = Sandbox.new
     priv = Privileges.new
 
@@ -57,7 +63,7 @@ class Solution < ActiveRecord::Base
   private
 
   def get_method_call(challenge)
-    result = challenge.answer.split("\n")[0]
+    result = challenge.ruby_answer.split("\n")[0]
     result.gsub!("def","")
     result.gsub!(" ","")
     result
