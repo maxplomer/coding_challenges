@@ -23,10 +23,9 @@ class JsSolutionsController < ApplicationController
     )
 
     if @solution.save
-      redirect_to user_url(current_user)
+      render json: @solution
     else
-      flash.now[:errors] = @solution.errors.full_messages
-      render :new
+      render :json => @solution.errors, :status => :unprocessable_entity
     end
 
   end
