@@ -15,7 +15,7 @@ class Solution < ActiveRecord::Base
 
   def success?
     challenge = self.challenge
-    input_results = challenge.input_results
+    input_results = challenge.ruby_input_results
     allowed_methods = challenge.allowed_methods
 
     s = Sandbox.new
