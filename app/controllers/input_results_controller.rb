@@ -22,7 +22,7 @@ class InputResultsController < ApplicationController
   private
 
   def input_result_params
-    params.require(:input_result).permit(:input, :result)
+    params.require(:input_result).permit(:input, :result, :language)
   end
 
 

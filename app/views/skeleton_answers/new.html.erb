@@ -1,0 +1,49 @@
+<% if signed_in? && current_user.admin %>
+
+  <form action="<%= skeleton_answer_url %>" method="post">
+
+    <input
+      name="authenticity_token"
+      type="hidden"
+      value="<%= form_authenticity_token %>">
+
+    <input
+      id="skeleton_answer_challenge_name"
+      name="skeleton_answer[challenge_name]"
+      type="text"
+      placeholder="Challenge name">
+    <br>
+
+    <textarea 
+      id="skeleton_answer_method_skeleton" 
+      class="text" cols="86" rows ="5" 
+      name="skeleton_answer[method_skeleton]" 
+      placeholder="Method Skeleton"></textarea>
+    <br>
+
+    <textarea 
+      id="skeleton_answer_answer" 
+      class="text" cols="86" rows ="5" 
+      name="skeleton_answer[answer]" 
+      placeholder="Answer"></textarea>
+    <br>
+
+    <input
+      id="skeleton_answer_language"
+      name="skeleton_answer[language]"
+      type="text"
+      placeholder="Language">
+    <br>
+
+    <input type="submit" value="Submit Skeleton and Answer" class="btn btn-default">
+  </form>
+
+<% else %>
+
+  <h3>You must be an admin to create a new challenge skeleton and answer</h3>
+
+<% end %>
+
+
+
+

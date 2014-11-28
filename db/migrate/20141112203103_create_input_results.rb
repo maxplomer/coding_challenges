@@ -4,6 +4,7 @@ class CreateInputResults < ActiveRecord::Migration
       t.integer :challenge_id, :null => false
       t.text :input, :null => false
       t.text :result, :null => false
+      t.text :language, :null => false
 
       t.timestamps
     end

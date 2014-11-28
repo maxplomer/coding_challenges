@@ -5,6 +5,7 @@ class CreateSolutions < ActiveRecord::Migration
       t.integer :challenge_id, :null => false
       t.text :method_string, :null => false
       t.boolean :success, :null => false
+      t.text :language, :null => false
 
       t.timestamps
     end

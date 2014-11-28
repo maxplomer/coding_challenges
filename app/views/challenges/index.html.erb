@@ -8,8 +8,25 @@
 
 <% @challenges.each do |challenge| %>
   <h3><%= link_to challenge.name, challenge_url(challenge) %></h3>
-  <% if signed_in? && current_user.have_solved?(challenge) %>
-    You have already solved this challenge :^) <br><br>
+
+  Solve in:
+
+  <% if challenge.can_solve_in?("Ruby") %>
+    <%= link_to "Ruby", challenge_url(challenge), class: "btn btn-default" %>
+  <% end %>
+  
+  <% if challenge.can_solve_in?("JavaScript") %>
+    <%= link_to "JavaScript", js_challenge_url(challenge), class: "btn btn-default" %>
+  <% end %>
+
+  <br><br>
+
+  <% if signed_in? && current_user.have_solved?(challenge, "Ruby") && current_user.have_solved?(challenge, "JavaScript") %>
+    You have already solved this challenge in both Ruby and JavaScript :^) <br><br>
+  <% elsif signed_in? && current_user.have_solved?(challenge, "Ruby") %>
+    You have already solved this challenge in Ruby :^) <br><br>
+  <% elsif signed_in? && current_user.have_solved?(challenge, "JavaScript") %>
+    You have already solved this challenge in JavaScript :^) <br><br>
   <% end %>
 <table class="table table-striped table-bordered table-condensed">
   <tr>
@@ -24,15 +41,6 @@
     <td><b>&#37; Successful:</b></td>
     <td>
       <%= challenge.percent_successful %>
-    </td>
-  </tr>
-  <tr>
-    <td><b>Allowed Methods:</b></td>
-    <td>
-      <% challenge.allowed_methods.each_with_index do |method, i| %>
-        <%= method.method %>
-        <%= "," unless (i + 1) == challenge.allowed_methods.length %>
-      <% end %>
     </td>
   </tr>
 </table>

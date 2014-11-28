@@ -64,18 +64,24 @@
 
 <% @user.solutions.reverse.each_with_index do |solution, index| %>
   <% challenge = solution.challenge %>
+  <% language = solution.language %>
   <h3><%= link_to challenge.name, challenge_url(challenge) %></h3>
   Solution: <%= solution.success ? "Successful" : "Failed"%> <br><br>
 
-  <% if (signed_in? && current_user.have_solved?(challenge)) || !solution.success %>
+  <% if (signed_in? && current_user.have_solved?(challenge, language)) || !solution.success %>
 
     <div id="editor-readonly<%= index %>" class="editor-readonly"><%= solution.method_string %></div>
 
 
     <script>
       var editor = ace.edit("editor-readonly<%= index %>");
-      var RubyMode = require("ace/mode/ruby").Mode;
-      editor.getSession().setMode(new RubyMode());
+      <% if language == "Ruby" %>
+        var RubyMode = require("ace/mode/ruby").Mode;
+        editor.getSession().setMode(new RubyMode());
+      <% else %>
+        var JavaScriptMode = require("ace/mode/javascript").Mode;
+        editor.getSession().setMode(new JavaScriptMode());
+      <% end %>
       editor.setOptions({
         readOnly: true,
         highlightActiveLine: false,
@@ -87,15 +93,25 @@
     <br>
   
     <% if solution.success %>
+      <% if language == "Ruby" %>
+        <% answer = solution.challenge.ruby_answer %>
+      <% else %>
+        <% answer = solution.challenge.javascript_answer %>
+      <% end %>
 
       Official Solution:<br><br>
-      <div id="editor-readonly-official<%= index %>" class="editor-readonly"><%= solution.challenge.answer %></div>
+      <div id="editor-readonly-official<%= index %>" class="editor-readonly"><%= answer %></div>
 
 
       <script>
         var editor = ace.edit("editor-readonly-official<%= index %>");
-        var RubyMode = require("ace/mode/ruby").Mode;
-        editor.getSession().setMode(new RubyMode());
+        <% if language == "Ruby" %>
+          var RubyMode = require("ace/mode/ruby").Mode;
+          editor.getSession().setMode(new RubyMode());
+        <% else %>
+          var JavaScriptMode = require("ace/mode/javascript").Mode;
+          editor.getSession().setMode(new JavaScriptMode());
+        <% end %>
         editor.setOptions({
           readOnly: true,
           highlightActiveLine: false,

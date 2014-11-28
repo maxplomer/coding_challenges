@@ -4,10 +4,11 @@ class SolutionsController < ApplicationController
   	user_id = current_user.id
     challenge_id = params["solution"]["challenge_id"]
   	method_string = params["solution"]["method_string"]
+    language = "Ruby"
 
     challenge = Challenge.find(challenge_id)
-    if current_user.have_solved?(challenge)
-      flash[:errors] = ["You already solved this challenge."]
+    if current_user.have_solved?(challenge, language)
+      flash[:errors] = ["You already solved this challenge in Ruby."]
       redirect_to user_url(current_user)
       return
     end
@@ -16,7 +17,8 @@ class SolutionsController < ApplicationController
   	  user_id: user_id, 
   	  challenge_id: challenge_id, 
   	  method_string: method_string, 
-  	  success: false
+  	  success: false,
+      language: language
   	)
 
     timeout_in_seconds = 10

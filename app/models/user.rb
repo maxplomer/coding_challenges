@@ -31,8 +31,8 @@ class User < ActiveRecord::Base
     self.users_they_follow.include?(user)
   end
 
-  def have_solved?(challenge)
-    self.solutions.select{ |i| i.challenge == challenge && i.success }.length > 0 
+  def have_solved?(challenge, language)
+    self.solutions.select{ |i| i.challenge == challenge && i.success && i.language == language }.length > 0 
   end
 
   def number_easy_submissions

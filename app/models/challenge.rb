@@ -28,6 +28,13 @@ class Challenge < ActiveRecord::Base
     dependent: :destroy
   )
 
+  has_many(
+    :skeleton_answers,
+    class_name: "SkeletonAnswer",
+    foreign_key: :challenge_id,
+    dependent: :destroy
+  )
+
   def number_submissions
     self.solutions.length
   end
@@ -38,6 +45,34 @@ class Challenge < ActiveRecord::Base
     else
       truncate(( number_successful * 1.0 / number_submissions ) * 100)
     end
+  end
+
+  def ruby_method_skeleton
+    self.skeleton_answers.select{ |i| i.language == "Ruby" }[0].method_skeleton
+  end 
+
+  def javascript_method_skeleton
+    self.skeleton_answers.select{ |i| i.language == "JavaScript" }[0].method_skeleton
+  end
+
+  def ruby_answer
+    self.skeleton_answers.select{ |i| i.language == "Ruby" }[0].answer
+  end 
+
+  def javascript_answer
+    self.skeleton_answers.select{ |i| i.language == "JavaScript" }[0].answer
+  end
+
+  def ruby_input_results
+    self.input_results.select{ |i| i.language == "Ruby" }
+  end
+
+  def javascript_input_results
+    self.input_results.select{ |i| i.language == "JavaScript" }
+  end
+
+  def can_solve_in?(language)
+    self.skeleton_answers.select{ |i| i.language == language }.length > 0
   end
 
   private
