@@ -14,3 +14,6 @@ git push heroku master
 heroku rake db:migrate
 
 
+
+
+heroku run rails c  <-- will need to set user to admin

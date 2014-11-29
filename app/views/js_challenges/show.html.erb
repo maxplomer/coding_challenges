@@ -121,7 +121,7 @@ Solve in:
         for (var i=0; i<inputs.length; i++) {
           var input = inputs[i];
           var result = results[i]; 
-          var flag = (eval(input+method+call) == eval(result));
+          var flag = (eval(input+method+call).toString() == eval(result).toString());
 
           if (!flag) {
             data["solution"]["success"] = false;
