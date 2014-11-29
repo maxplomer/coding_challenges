@@ -105,6 +105,31 @@ Solve in:
       $form.on("submit", function (event) {
         event.preventDefault();
         var data = $(event.currentTarget).serializeJSON();
+
+        //determine if solution passes - start
+
+        var inputs = [];
+        var results = [];
+        <% @challenge.javascript_input_results.each do |input_result| %>
+          inputs.push("<%= input_result.input.gsub("\n","").gsub("\r","") %>");
+          results.push("<%= input_result.result %>");
+        <% end %>
+
+        var method = data["solution"]["method_string"];
+        var call = "<%= @challenge.javascript_method_call %>";
+    
+        for (var i=0; i<inputs.length; i++) {
+          var input = inputs[i];
+          var result = results[i]; 
+          var flag = (eval(input+method+call) == eval(result));
+
+          if (!flag) {
+            data["solution"]["success"] = false;
+            break;
+          }
+        }
+
+        //determine if solution passes - end
         var success = function () {
           window.location = "/users/<%= current_user.id %>";
         };

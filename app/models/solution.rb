@@ -18,12 +18,6 @@ class Solution < ActiveRecord::Base
     input_results = challenge.ruby_input_results
     allowed_methods = challenge.allowed_methods
 
-    logger.info("HELLOHELLOHELLO")
-    logger.info(challenge.id)
-    logger.info(input_results)
-    logger.info(allowed_methods)
-    logger.info("HELLOHELLOHELLO")
-
     s = Sandbox.new
     priv = Privileges.new
 
@@ -68,6 +62,5 @@ class Solution < ActiveRecord::Base
     result.gsub!(" ","")
     result
   end
-
 
 end

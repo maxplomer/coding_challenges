@@ -75,6 +75,16 @@ class Challenge < ActiveRecord::Base
     self.skeleton_answers.select{ |i| i.language == language }.length > 0
   end
 
+  def javascript_method_call
+    result = self.javascript_answer.split("\n")[0]
+    result.gsub!("function","")
+    result.gsub!(" ","")
+    result.gsub!("\r","")
+    result.gsub!("{","")
+    result += ";"
+    result
+  end
+
   private
 
   def truncate(x)
