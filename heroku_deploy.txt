@@ -15,5 +15,14 @@ heroku rake db:migrate
 
 
 
+To drop the database, if you are using SHARED_DATABASE_URL:
+
+heroku pg:reset DATABASE
+
+To recreate the database with nothing in it:
+
+heroku run rake db:migrate
+
+
 
 heroku run rails c  <-- will need to set user to admin
