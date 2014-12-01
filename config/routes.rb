@@ -26,7 +26,8 @@ CodechefClone::Application.routes.draw do
   resources :js_challenges, :only =>[:show]
   resources :js_solutions, :only => [:create], :defaults => { :format => :json }
   resources :skeleton_answers, :only => [:create, :new]
-
+  resources :sql_challenges, :only =>[:show]
+  resources :sql_solutions, :only => [:create]
 end
 
 

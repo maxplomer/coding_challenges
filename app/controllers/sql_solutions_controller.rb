@@ -1,0 +1,2 @@
+class SqlSolutionsController < ApplicationController
+end

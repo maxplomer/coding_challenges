@@ -1,0 +1,2 @@
+class SqlChallengesController < ApplicationController
+end
