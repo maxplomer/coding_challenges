@@ -31,15 +31,14 @@ Solve in:
   </tr>
 
   <% result = @challenge.sql_result.gsub("\r","").split("\n") %>
-    <tr>
-      <td><b>Result:</b></td>
-      <td>
-        <% result.each do |line| %>
-          <%= line %><br>
-        <% end %>
-      </td>
-    </tr> 
-  <% end %>
+  <tr>
+    <td><b>Result:</b></td>
+    <td>
+      <% result.each do |line| %>
+        <%= line %><br>
+      <% end %>
+    </td>
+  </tr> 
 
 </table>
 

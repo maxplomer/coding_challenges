@@ -30,7 +30,27 @@ class SqlSolutionsController < ApplicationController
     rescue Exception
 
     end
-
+    
+    #reset the connection - start
+    if Rails.env.production?
+      @connection = ActiveRecord::Base.establish_connection(
+                  :adapter => "postgresql",
+                  :host => "ec2-184-73-229-220.compute-1.amazonaws.com",
+                  :database => "d29j3r0ipqeto1",
+                  :username => "bwssgawwtckdsr",
+                  :password => "mjpabZQ83eWnVVa4wMpCXneuyi"
+      )
+    else
+      @connection = ActiveRecord::Base.establish_connection(
+                  :adapter => "postgresql",
+                  :host => "localhost",
+                  :database => "codechef_clone_development",
+                  :username => "maxplomer",
+                  :password => "japan3s3Sss#"
+      )
+    end
+    #reset the connection - start
+    
     if @solution.save
       redirect_to user_url(current_user)
     else

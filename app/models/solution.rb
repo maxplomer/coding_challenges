@@ -23,7 +23,7 @@ class Solution < ActiveRecord::Base
                 :username => "uvyslrmtkifahg",
                 :password => "f71bxX68oPP7F2EIMg791_rs8r"
     )
-    sql = self.method_string
+    sql = self.method_string.dup
     sql.gsub!("\n"," ")
     sql.gsub!("\r"," ")
 
