@@ -1,4 +1,5 @@
 class Solution < ActiveRecord::Base
+  include Shikashi
 
   belongs_to(
     :challenge,
@@ -42,8 +43,6 @@ class Solution < ActiveRecord::Base
   end
 
   def success?
-    include Shikashi
-
     challenge = self.challenge
     input_results = challenge.ruby_input_results
     allowed_methods = challenge.allowed_methods
