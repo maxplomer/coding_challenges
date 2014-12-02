@@ -47,20 +47,36 @@ class Challenge < ActiveRecord::Base
     end
   end
 
+  def get_method_skeleton(language)
+    self.skeleton_answers.select{ |i| i.language == language }[0].method_skeleton
+  end
+
   def ruby_method_skeleton
-    self.skeleton_answers.select{ |i| i.language == "Ruby" }[0].method_skeleton
+    get_method_skeleton("Ruby")
   end 
 
   def javascript_method_skeleton
-    self.skeleton_answers.select{ |i| i.language == "JavaScript" }[0].method_skeleton
+    get_method_skeleton("JavaScript")
+  end
+
+  def sql_method_skeleton
+    get_method_skeleton("SQL")
+  end
+
+  def get_answer(language)
+    self.skeleton_answers.select{ |i| i.language == language }[0].answer
   end
 
   def ruby_answer
-    self.skeleton_answers.select{ |i| i.language == "Ruby" }[0].answer
+    get_answer("Ruby")
   end 
 
   def javascript_answer
-    self.skeleton_answers.select{ |i| i.language == "JavaScript" }[0].answer
+    get_answer("JavaScript")
+  end
+
+  def sql_answer
+    get_answer("SQL")
   end
 
   def ruby_input_results
@@ -69,6 +85,10 @@ class Challenge < ActiveRecord::Base
 
   def javascript_input_results
     self.input_results.select{ |i| i.language == "JavaScript" }
+  end
+
+  def sql_result
+    self.input_results[0].result
   end
 
   def can_solve_in?(language)

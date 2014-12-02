@@ -1,5 +1,4 @@
 class Solution < ActiveRecord::Base
-  include Shikashi
 
   belongs_to(
     :challenge,
@@ -13,7 +12,38 @@ class Solution < ActiveRecord::Base
     foreign_key: :user_id
   )
 
+  def sql_success?
+    challenge = self.challenge
+    result = eval(challenge.sql_result)
+
+    @connection = ActiveRecord::Base.establish_connection(
+                :adapter => "postgresql",
+                :host => "ec2-23-23-210-37.compute-1.amazonaws.com",
+                :database => "d75thet6sa5c0l",
+                :username => "uvyslrmtkifahg",
+                :password => "f71bxX68oPP7F2EIMg791_rs8r"
+    )
+    sql = self.method_string
+    sql.gsub!("\n"," ")
+    sql.gsub!("\r"," ")
+
+    #sandbox - start
+    sql_upcase = sql.upcase
+    ["INSERT", "DELETE", "UPDATE", "MERGE", "TRUNCATE"].each do |bad_command|
+      return false if sql_upcase.include?(bad_command)
+    end
+    #sandbox - end
+
+    my_result = @connection.connection.execute(sql);
+    all_true = []
+    result.each_index{|i| all_true << (result[i] == my_result[i])}
+
+    all_true.all?
+  end
+
   def success?
+    include Shikashi
+
     challenge = self.challenge
     input_results = challenge.ruby_input_results
     allowed_methods = challenge.allowed_methods

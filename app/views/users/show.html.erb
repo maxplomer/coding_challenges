@@ -68,8 +68,10 @@
 
   <% if language == "Ruby" %>
     <h3><%= link_to challenge.name, challenge_url(challenge) %> in Ruby</h3>
-  <% else %>
+  <% elsif language == "JavaScript" %>
     <h3><%= link_to challenge.name, js_challenge_url(challenge) %> in JavaScript</h3>
+  <% elsif language == "SQL" %>
+    <h3><%= link_to challenge.name, sql_challenge_url(challenge) %> in SQL</h3>
   <% end %>
 
   Solution: <%= solution.success ? "Successful" : "Failed"%> <br><br>
@@ -84,9 +86,12 @@
       <% if language == "Ruby" %>
         var RubyMode = require("ace/mode/ruby").Mode;
         editor.getSession().setMode(new RubyMode());
-      <% else %>
+      <% elsif language == "JavaScript" %>
         var JavaScriptMode = require("ace/mode/javascript").Mode;
         editor.getSession().setMode(new JavaScriptMode());
+      <% elsif language == "SQL" %>
+        var SQLMode = require("ace/mode/sql").Mode;
+        editor.getSession().setMode(new SQLMode());
       <% end %>
       editor.setOptions({
         readOnly: true,
@@ -101,8 +106,10 @@
     <% if solution.success %>
       <% if language == "Ruby" %>
         <% answer = solution.challenge.ruby_answer %>
-      <% else %>
+      <% elsif language == "JavaScript" %>
         <% answer = solution.challenge.javascript_answer %>
+      <% elsif language == "SQL" %>
+        <% answer = solution.challenge.sql_answer %>
       <% end %>
 
       Official Solution:<br><br>
@@ -114,9 +121,12 @@
         <% if language == "Ruby" %>
           var RubyMode = require("ace/mode/ruby").Mode;
           editor.getSession().setMode(new RubyMode());
-        <% else %>
+        <% elsif language == "JavaScript" %>
           var JavaScriptMode = require("ace/mode/javascript").Mode;
           editor.getSession().setMode(new JavaScriptMode());
+        <% elsif language == "SQL" %>
+          var SQLMode = require("ace/mode/sql").Mode;
+          editor.getSession().setMode(new SQLMode());
         <% end %>
         editor.setOptions({
           readOnly: true,
