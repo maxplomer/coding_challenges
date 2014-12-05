@@ -1,3 +1,14 @@
+.table-categories {
+  vertical-align: text-top;
+  text-align: center;
+  font-size: 24px;
+}
+
+.table-categories-right {
+  vertical-align: text-top;
+  text-align: center;
+}
+
 .menu-bottom-center {
   text-align: center;
   margin-top: 20px;
@@ -31,6 +42,10 @@
 
 .left-column {
   width: 200px;
+}
+
+.right-column-categories {
+  width: 400px;
 }
 
 .user-show-table {

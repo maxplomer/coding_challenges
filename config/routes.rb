@@ -2,6 +2,7 @@ CodechefClone::Application.routes.draw do
   root :to => "challenges#easy"
 
   get 'static_pages/about'
+  get 'static_pages/categories'
 
   get 'challenges/easy'
   get 'challenges/medium'
