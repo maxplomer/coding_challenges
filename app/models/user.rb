@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
   end
 
   def points
-    number_easy_submissions + number_medium_submissions * 2 + number_hard_submissions
+    number_easy_submissions + number_medium_submissions * 2 + number_hard_submissions * 3
   end
 
   def number_submissions
