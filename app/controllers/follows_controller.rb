@@ -41,4 +41,12 @@ class FollowsController < ApplicationController
     render :index
   end
 
+  def points
+    @users = current_user
+      .users_they_follow
+      .sort! { |a,b| b.points <=> a.points }
+    @points_button_class = "current-button"
+    render :index
+  end
+
 end

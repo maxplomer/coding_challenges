@@ -19,6 +19,12 @@ class UsersController < ApplicationController
     render :index
   end
 
+  def points
+    @users = User.all.sort! { |a,b| b.points <=> a.points }
+    @points_button_class = "current-button"
+    render :index
+  end
+
   def new
     @user = User.new
     render :new, :layout => false

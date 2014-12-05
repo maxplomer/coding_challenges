@@ -7,6 +7,8 @@
     <% leaderboard_url = follows_medium_url %>
   <% elsif @hard_button_class %>
     <% leaderboard_url = follows_hard_url %>
+  <% elsif @points_button_class %>
+    <% leaderboard_url = follows_points_url %>
   <% end %>
 
   <a href="<%= leaderboard_url %>" class="btn btn-default">show followed only</a>
@@ -17,6 +19,7 @@
 <%= link_to "Easy", users_easy_url, class: "btn btn-default #{@easy_button_class}" %>
 <%= link_to "Medium", users_medium_url, class: "btn btn-default #{@medium_button_class}" %>
 <%= link_to "Hard", users_hard_url, class: "btn btn-default #{@hard_button_class}" %>
+<%= link_to "Points", users_points_url, class: "btn btn-default #{@points_button_class}" %>
 
 <br><br>
 
@@ -31,6 +34,8 @@
            <%= user.number_medium_submissions %>
       	 <% elsif @hard_button_class %>
            <%= user.number_hard_submissions %>
+         <% elsif @points_button_class %>
+           <%= user.points %>
       	 <% end %>
       </td>
     </tr>

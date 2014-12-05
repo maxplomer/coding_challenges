@@ -11,10 +11,12 @@ CodechefClone::Application.routes.draw do
   get 'users/easy'
   get 'users/medium'
   get 'users/hard'
+  get 'users/points'
 
   get 'follows/easy'
   get 'follows/medium'
   get 'follows/hard'
+  get 'follows/points'
 
   resources :users, :only => [:create, :new, :show, :edit, :update, :index]
   resource :session, :only => [:create, :destroy, :new]
