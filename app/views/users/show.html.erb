@@ -1,4 +1,4 @@
-<h1><%= @user.name %>&#39;s Profile</h1>
+<h1><%= @user.name %>&#39;s Profile &nbsp;&nbsp; <font color="blue">[<font color="green"><%= "+" if @user.points > 0 %><%= @user.points %></font>]</font></h1>
 
 <!-- follow or unfollow - start -->
 <% if signed_in? && current_user.id != @user.id %>
@@ -35,8 +35,28 @@
   <br>
 <% end %>
 <!-- follow or unfollow - end -->
+<h3> Badges: </h3>
+<% if @user.points==0 %>
+(none)
+<% else %>
+  <% if @user.points >= 5 %>
+    <img src="http://www.combustionhelp.com/codingchallenges_pictures/badge2.png">
+  <% end %>
+  <% if @user.points >= 10 %>
+    <img src="http://www.combustionhelp.com/codingchallenges_pictures/badge3.png">
+  <% end %>
+  <% if @user.points >= 15 %>
+    <img src="http://www.combustionhelp.com/codingchallenges_pictures/badge4.png">
+  <% end %>
+  <% if @user.points >= 20 %>
+    <img src="http://www.combustionhelp.com/codingchallenges_pictures/badge5.png">
+  <% end %>
+  <% if @user.points >= 25 %>
+    <img src="http://www.combustionhelp.com/codingchallenges_pictures/badge6.png">
+  <% end %>
 
-
+<% end %>
+<h3> Stats: </h3>
 <table class="table table-striped table-bordered table-condensed user-show-table">
   <tr>
     <td><b>&#35; Submissions:</b></td>

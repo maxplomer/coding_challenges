@@ -47,6 +47,10 @@ class User < ActiveRecord::Base
     self.solutions.select{ |i| i.challenge.difficulty == "hard" && i.success}.length
   end
 
+  def points
+    number_easy_submissions + number_medium_submissions * 2 + number_hard_submissions
+  end
+
   def number_submissions
     self.solutions.length
   end
