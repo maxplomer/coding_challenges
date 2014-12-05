@@ -123,7 +123,16 @@ Solve in:
           var result = results[i]; 
           var flag = true;
 
-          var my_result = eval(input+method+call);
+          // rescue javascript eval - start
+          try {
+             var my_result = eval(input+method+call); // might generate an exception
+          }
+          catch (e) {
+             // statements to handle any exceptions
+             console.log(e); // output exception object to console
+          }
+          // rescue javascript eval - end
+
           if(typeof my_result === 'undefined') {
             flag = false;
           }
