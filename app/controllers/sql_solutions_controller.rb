@@ -38,7 +38,7 @@ class SqlSolutionsController < ApplicationController
                   :host => "ec2-184-73-229-220.compute-1.amazonaws.com",
                   :database => "d29j3r0ipqeto1",
                   :username => "bwssgawwtckdsr",
-                  :password => "mjpabZQ83eWnVVa4wMpCXneuyi"
+                  :password => "ENV[SQL_DATABASE_PASSWORD]"
       )
     else
       @connection = ActiveRecord::Base.establish_connection(
@@ -46,7 +46,7 @@ class SqlSolutionsController < ApplicationController
                   :host => "localhost",
                   :database => "codechef_clone_development",
                   :username => "maxplomer",
-                  :password => "japan3s3Sss#"
+                  :password => "ENV[SQL_DATABASE_PASSWORD]"
       )
     end
     #reset the connection - start
