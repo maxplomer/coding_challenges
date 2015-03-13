@@ -38,7 +38,7 @@ class SqlSolutionsController < ApplicationController
                   :host => "ec2-184-73-229-220.compute-1.amazonaws.com",
                   :database => "d29j3r0ipqeto1",
                   :username => "bwssgawwtckdsr",
-                  :password => "ENV[MY_DATABASE_PASSWORD]"
+                  :password => ENV["MY_DATABASE_PASSWORD"]
       )
     else
       @connection = ActiveRecord::Base.establish_connection(
