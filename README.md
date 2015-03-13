@@ -7,4 +7,3 @@ The site is a Ruby on Rails app with a PostgreSQL database.  New challenges can 
 #Todos:
 - switch ruby sandboxing from shikaski to safemode gem
 - Adding backlog of coding challenges
-- Switch credentials in sql_solutions controller to environment variables and remove sql_solutions from .gitignore
