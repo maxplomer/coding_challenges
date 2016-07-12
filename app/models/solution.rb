@@ -21,7 +21,7 @@ class Solution < ActiveRecord::Base
                 :adapter => "postgresql",
                 :host => "ec2-23-23-210-37.compute-1.amazonaws.com",
                 :database => "d75thet6sa5c0l",
-                :username => "uvyslrmtkifahg",
+                :username => ENV["SQL_CHALLENGES_DATABASE_USERNAME"],
                 :password => ENV["SQL_CHALLENGES_DATABASE_PASSWORD"]
     )
     sql = self.method_string.dup

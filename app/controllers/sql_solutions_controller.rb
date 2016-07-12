@@ -37,7 +37,7 @@ class SqlSolutionsController < ApplicationController
                   :adapter => "postgresql",
                   :host => "ec2-184-73-229-220.compute-1.amazonaws.com",
                   :database => "d29j3r0ipqeto1",
-                  :username => "bwssgawwtckdsr",
+                  :username => ENV["MY_DATABASE_USERNAME"],
                   :password => ENV["MY_DATABASE_PASSWORD"]
       )
     else
@@ -45,8 +45,8 @@ class SqlSolutionsController < ApplicationController
                   :adapter => "postgresql",
                   :host => "localhost",
                   :database => "codechef_clone_development",
-                  :username => "maxplomer",
-                  :password => "ENV[SQL_DATABASE_PASSWORD]"
+                  :username => ENV["MY_DATABASE_USERNAME"],
+                  :password => ENV["MY_DATABASE_PASSWORD"]
       )
     end
     #reset the connection - start
